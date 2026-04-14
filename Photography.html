@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Photography</title>
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<style>
+		.lightbox {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.9);
+			z-index: 1000;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.lightbox.active {
+			display: flex;
+		}
+
+		.lightbox-content {
+			max-width: 80%;
+			max-height: 80%;
+			object-fit: contain;
+		}
+
+		.close-btn {
+			position: absolute;
+			top: 20px;
+			right: 30px;
+			color: white;
+			font-size: 35px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.close-btn:hover {
+			color: #bbb;
+		}
+
+		.nav-btn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: rgba(255, 255, 255, 0.3);
+			color: white;
+			border: none;
+			font-size: 30px;
+			padding: 10px 15px;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+		}
+
+		.nav-btn:hover {
+			background-color: rgba(255, 255, 255, 0.6);
+		}
+
+		.prev-btn {
+			left: 20px;
+		}
+
+		.next-btn {
+			right: 20px;
+		}
+
+		.image-counter {
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			color: white;
+			font-size: 14px;
+			background-color: rgba(0, 0, 0, 0.5);
+			padding: 8px 12px;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body class="page-nine">
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="about_me.html">About me</a>
+		<a href="vector Design.html">Vector Design</a>
+		<a href="visual communications.html">Visual Communications</a>
+		<a href="Posters.html">Posters</a>
+		<a href="digital imaging.html">Digital Imaging</a>
+		<a href="Photography.html">Photography</a>
+		<a href="Digital art.html">Digital Art</a>
+		<a href="Best Of.html">Best Of</a>
+	</nav>
+
+	<main>
+		<header>
+			<h1>Alleesha's Portfolio</h1>
+		</header>
+
+		<div class="content-box">
+			<h2>Photography</h2>
+			<h3>Photo Variety</h3>
+
+			<div class="photography-grid">
+				<div class="photo-gallery">
+					<div class="photo-container">
+						<a href="Images/IMG-20260117-WA0006 (1).jpg" class="lightbox-link">
+							<img src="Images/IMG-20260117-WA0006 (1).jpg" alt="birds looking over the sea">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/IMG-20260117-WA0010 (1).jpg" class="lightbox-link">
+							<img src="Images/IMG-20260117-WA0010 (1).jpg" alt="posing bird">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/kid_with_stuffed_animal.jpg" class="lightbox-link">
+							<img src="Images/kid_with_stuffed_animal.jpg" alt="Kid with a stuffed animal">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/IMG_20260117_164127169 (1).jpg" class="lightbox-link">
+							<img src="Images/IMG_20260117_164127169 (1).jpg" alt="Ashton">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/IMG_20260117_165058369 (1).jpg" class="lightbox-link">
+							<img src="Images/IMG_20260117_165058369 (1).jpg" alt="Photo 5">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/IMG_7417.JPG" class="lightbox-link">
+							<img src="Images/IMG_7417.JPG" alt="Photo 6">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/IMG_7430.JPG" class="lightbox-link">
+							<img src="Images/IMG_7430.JPG" alt="Photo 7">
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="photo-container">
+						<a href="Images/IMG_20260117_170230827 (1).jpg" class="lightbox-link">
+							<img src="Images/IMG_20260117_170230827 (1).jpg" alt="Photo 8">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="lightbox-overlay" class="lightbox">
+			<span class="close-btn">&times;</span>
+			<button class="nav-btn prev-btn">&lsaquo;</button>
+			<img class="lightbox-content" id="lightbox-img" src="" alt="">
+			<button class="nav-btn next-btn">&rsaquo;</button>
+			<div class="image-counter">
+				<span id="current-image">1</span> / <span id="total-images">8</span>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>&copy;Alleesha 2026</p>
+	</footer>
+
+	<script>
+		const lightbox = document.getElementById('lightbox-overlay');
+		const lightboxImg = document.getElementById('lightbox-img');
+		const lightboxLinks = document.querySelectorAll('.lightbox-link');
+		const closeBtn = document.querySelector('.close-btn');
+		const prevBtn = document.querySelector('.prev-btn');
+		const nextBtn = document.querySelector('.next-btn');
+		const currentImageSpan = document.getElementById('current-image');
+		const totalImagesSpan = document.getElementById('total-images');
+
+		let images = [];
+		let currentImageIndex = 0;
+
+		lightboxLinks.forEach((link, index) => {
+			images.push(link.href);
+
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				currentImageIndex = index;
+				openLightbox(index);
+			});
+		});
+
+		totalImagesSpan.textContent = images.length;
+
+		function openLightbox(index) {
+			lightboxImg.src = images[index];
+			lightboxImg.alt = lightboxLinks[index].querySelector('img').alt;
+			lightbox.classList.add('active');
+			currentImageSpan.textContent = index + 1;
+		}
+
+		function closeLightbox() {
+			lightbox.classList.remove('active');
+		}
+
+		closeBtn.addEventListener('click', closeLightbox);
+
+		prevBtn.addEventListener('click', () => {
+			currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+			openLightbox(currentImageIndex);
+		});
+
+		nextBtn.addEventListener('click', () => {
+			currentImageIndex = (currentImageIndex + 1) % images.length;
+			openLightbox(currentImageIndex);
+		});
+
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox) {
+				closeLightbox();
+			}
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (!lightbox.classList.contains('active')) return;
+			if (e.key === 'ArrowLeft') prevBtn.click();
+			if (e.key === 'ArrowRight') nextBtn.click();
+			if (e.key === 'Escape') closeLightbox();
+		});
+	</script>
+</body>
+</html>

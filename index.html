@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Alleesha's Portfolio</title>
+    
+    <link rel="stylesheet" href="css/stylesheet.css">
+    
+</head>
+<body class="page-one">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about_me.html">About Me</a>
+        <a href="visual communications.html">Visual Communications</a>
+        <a href="digital imaging.html">Digital Imaging</a>
+        <a href="vector Design.html">Vector Design</a>
+        <a href="Digital art.html">Digital Art</a>
+        <a href="Posters.html">Posters</a>
+        <a href="Photography.html">Photography</a>
+        <a href="Best Of.html">Best Of</a>
+    </nav>
+    <main>
+        <header>
+            <h1>Alleesha's Portfolio</h1>
+        </header>
+        <button class="welcome-btn">Welcome to my Portfolio</button>
+    </main>
+    <footer>
+        <p>&copy;Alleesha 2026</p>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-container" id="galleryModal">
+        <div class="gallery-content">
+            
+            <div class="gallery-header">
+                <h2>My Work</h2>
+                <p>A sneak peek into my creative projects</p>
+            </div>
+
+            <div class="images-grid" id="imagesGrid">
+                <!-- Images will be dynamically generated or replace src with your own -->
+                <div class="portfolio-image">
+                    <a href="Images/texture_alleesha.jpg" class="lightbox-link">
+                    <img src="Images/texture_alleesha.jpg" alt="Portfolio work 1"></a>
+                </div>
+                <div class="portfolio-image">
+                    <a href="Images/Figure Eight Final Design.jpg" class="lightbox-link">
+                    <img src="Images/Figure Eight Final Design.jpg" alt="Portfolio work 2"></a>
+                </div>
+                <div class="portfolio-image">
+                    <a href="Images/Flyer-1.png" class="lightbox-link">
+                        <img src="Images/Flyer-1.png" alt="Portfolio work 3"></a>
+                </div>
+                <div class="portfolio-image">
+                    <a href="Images/abstract-art_vector.jpg" class="lightbox-link">
+                        <img src="Images/abstract-art_vector.jpg" alt="Portfolio work 4"></a>
+                </div>
+            </div>
+
+            <div class="gallery-info">
+                Click outside or the X button to close
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const welcomeBtn = document.querySelector('.welcome-btn');
+        const galleryModal = document.getElementById('galleryModal');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Open gallery when button is clicked
+        welcomeBtn.addEventListener('click', () => {
+            galleryModal.classList.add('active');
+            // Auto-close after 3 seconds
+            setTimeout(() => {
+                closeGallery();
+            }, 3000);
+        });
+
+        // Close gallery function
+        function closeGallery() {
+            galleryModal.classList.remove('active');
+        }
+
+        // Close button click
+        closeBtn.addEventListener('click', closeGallery);
+
+        // Close when clicking outside the gallery content
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                closeGallery();
+            }
+        });
+
+        // Also close with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && galleryModal.classList.contains('active')) {
+                closeGallery();
+            }
+        });
+    </script>
+</body>
+</html>
