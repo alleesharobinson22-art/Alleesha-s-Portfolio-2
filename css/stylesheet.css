@@ -94,12 +94,12 @@ footer {
 
 /* 5. BACKGROUND CLASSES */
 body.page-one, body.page-three, body.page-five, body.page-seven, body.page-nine {
-    background: url("../Images/Logo_background_2.gif") no-repeat center center fixed;
+    background: url("../images/Logo_background_2.gif") no-repeat center center fixed;
     background-size: cover;
 }
 
 body.page-two, body.page-four, body.page-six, body.page-eight {
-    background: url("../Images/Logo_background_3.gif") no-repeat center center fixed;
+    background: url("../images/Logo_background_3.gif") no-repeat center center fixed;
     background-size: cover;
 }
 
