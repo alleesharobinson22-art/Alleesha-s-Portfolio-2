@@ -1,0 +1,450 @@
+@charset "utf-8";
+
+/* 1. REGISTER THE FONT */
+@font-face {
+    font-family: AirTravelers;
+    /* Updated to the exact folder and file name from your screenshot */
+    src:url("../fonts/Air Travelers Personal Use.otf");
+}
+
+/* 2. SHARED LAYOUT */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;             
+    flex-wrap: wrap;           /* CRITICAL: Allows the footer to wrap to the bottom */
+    min-height: 100vh;
+    font-family: sans-serif;   
+}
+
+/* SIDE NAVIGATION */
+nav {
+    width: 200px;              
+    background: rgba(0, 0, 0, 0.85); 
+    display: flex;
+    flex-direction: column;    
+    padding: 2rem 1rem;
+    position: fixed;           
+    height: 100vh;             /* Ensures it stays full height */
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00ffcc;
+}
+
+/* 3. CONTENT AREA */
+main {
+    margin-left: 230px;        
+    flex: 1 1 0;               /* Allows the main area to grow and fill space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    min-height: 80vh;          /* Ensures main area is tall enough to push footer down */
+}
+
+header h1 {
+    /* FIXED: Matches the AirTravelers font-family above */
+    font-family: AirTravelers, cursive; 
+    font-size: 5rem;
+    color: darkcyan;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.8); /* your current style*/
+    padding: 3rem;
+    border-radius: 15px;
+    margin: 0px auto; /*centers the white box*/
+    max-width: 800px;
+    width: 80%; /* adjust based on your layout*/
+    overflow: hidden; /* prevents items from spilling out*/
+    height: auto; /* crucial lets the box grow with the photos*/
+    min-height: 400px; /* optional keeps it from looking to small when empty*/
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin-bottom: 3rem;
+}
+
+/* 4. THE FOOTER FIX */
+footer {
+    width: 100%;               /* Forces footer to take up the full width row */
+    margin-left: 232px;        /* Matches the sidebar offset */
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* 5. BACKGROUND CLASSES */
+body.page-one, body.page-three, body.page-five, body.page-seven, body.page-nine {
+    background: url("../Images/Logo_background_2.gif") no-repeat center center fixed;
+    background-size: cover;
+}
+
+body.page-two, body.page-four, body.page-six, body.page-eight {
+    background: url("../Images/Logo_background_3.gif") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* The container that holds all posters */
+.poster-gallery {
+    display: flex;
+    flex-wrap: wrap;      /* Allows items to move to the next row */
+    justify-content: center; /* Centers the posters horizontally */
+    gap: 20px;            /* Adds space between the posters */
+    padding: 20px 0;
+}
+
+/* Individual poster styling */
+.poster-item {
+    flex: 1 1 250px;      /* Grows, shrinks, and sets a base width of 250px */
+    max-width: 300px;     /* Prevents posters from getting too huge */
+    text-align: center;
+}
+
+.poster-item img {
+    width: 100%;          /* Makes image responsive to the container width */
+    height: auto;
+    border-radius: 8px;   /* Optional: rounds the corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Gives it a nice lift */
+    transition: transform 0.3s ease;
+}
+
+/* Fun hover effect */
+.poster-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Container for each project */
+.project-card {
+    display: flex;
+    flex-direction: row; /* Side-by-side on desktop */
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background */
+    border-radius: 10px;
+}
+
+/* Ensure images take up about half the space */
+.project-image {
+    flex: 1;
+}
+
+.project-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Ensure text takes up the other half */
+.project-info {
+    flex: 1;
+    text-align: left;
+}
+
+/* Mobile Responsive: Stacks the image on top of the text */
+@media (max-width: 768px) {
+    .project-card {
+        flex-direction: column;
+    }
+}
+
+/* The master container */
+.photography-grid {
+    display: flex;
+    flex-wrap: wrap;      /* Allows photos to wrap to the next line */
+    justify-content: space-around; /* Distributes 8 items evenly */
+    gap: 15px;            /* The gap between your 8 flexboxes */
+    padding: 20px 0;
+}
+
+/* Each of the 8 individual flexboxes */
+.photo-container {
+    flex: 1 1 calc(25% - 20px); /* Creates a 4-column layout on desktop */
+    display: flex;             /* Makes this item its own flexbox */
+    justify-content: center;   /* Centers the image inside the box */
+    align-items: center;
+    min-width: 200px;          /* Prevents them from getting too tiny */
+    background-color: #f4f4f4; /* Optional: adds a frame look */
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Ensures the photos fit perfectly */
+.photo-container img {
+    width: 100%;
+    height: 250px; /* Forces unniform height */
+    display: block;
+    object-fit: cover; /* Keeps photos from looking stretched */
+}
+
+/* Responsive: 2 columns for tablets, 1 column for phones */
+@media (max-width: 900px) {
+    .photo-container { flex: 1 1 calc(50% - 20px); }
+}
+
+@media (max-width: 500px) {
+    .photo-container { flex: 1 1 100%; }
+}
+
+/* The container inside your white box */
+.vector-gallery {
+    display: flex;
+    flex-wrap: wrap;       /* This lets items drop to the next line */
+    justify-content: center; /* Keeps them centered inside the box */
+    gap: 15px;             /* Space between your items */
+    padding: 10px;
+}
+
+/* Individual boxes for each piece of art */
+.vector-item {
+    flex: 1 1 200px;       /* Grows/shrinks with a base width of 200px */
+    max-width: 280px;      /* Prevents items from getting too huge */
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+.vector-item img {
+    width: 100%;           /* Makes the image fit its box perfectly */
+    height: auto;
+    display: block;
+}
+
+/* The semi-transparent background */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* The enlarged image */
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    border: 3px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Gallery Modal Styles */
+.gallery-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+}
+
+.gallery-container.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.gallery-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: auto;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.gallery-header h2 {
+    color: #1a1a2e;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.gallery-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Images Grid */
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    min-height: 200px;
+}
+
+.portfolio-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 8px;
+    overflow: hidden;
+    animation: slideIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Staggered animations */
+.portfolio-image:nth-child(1) {
+    animation: slideInLeft 0.6s ease-out 0.1s forwards;
+}
+
+.portfolio-image:nth-child(2) {
+    animation: slideInRight 0.6s ease-out 0.2s forwards;
+}
+
+.portfolio-image:nth-child(3) {
+    animation: slideInLeft 0.6s ease-out 0.3s forwards;
+}
+
+.portfolio-image:nth-child(4) {
+    animation: slideInRight 0.6s ease-out 0.4s forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.gallery-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 24px;
+    color: #1a1a2e;
+}
+
+.gallery-close-btn:hover {
+    background: #00d4ff;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.gallery-info {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Portfolio Preview Button Styles */
+.welcome-btn {
+    width: 100%;
+    padding: 40px;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.welcome-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 212, 255, 0.5);
+}
+
+.welcome-btn:active {
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .gallery-content {
+        padding: 20px;
+    }
+
+    .images-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .gallery-header h2 {
+        font-size: 22px;
+    }
+
+    .welcome-btn {
+        padding: 30px;
+        font-size: 24px;
+    }
+}
